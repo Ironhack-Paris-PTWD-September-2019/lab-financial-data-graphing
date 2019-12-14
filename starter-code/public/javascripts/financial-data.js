@@ -1,10 +1,14 @@
-const apiUrl = "http://api.coindesk.com/v1/bpi/historical/close.json";
+const startDate = document.getElementById("startDate");
+const endDate = ;
+
+const apiUrl = `http://api.coindesk.com/v1/bpi/historical/close.json?start=`${startDate}`&end=`${endDate};
 axios.get(apiUrl)
 .then(dataFromAPI=>{
     const stockData = dataFromAPI.data.bpi; 
     const dailyDates = Object.keys(stockData);
     const dailyPrices = Object.values(stockData);
     
+    //
     printTheChart(dailyDates,dailyPrices);
 
     console.log("Daily Price", dailyPrices, "Daily Date", dailyDates);
