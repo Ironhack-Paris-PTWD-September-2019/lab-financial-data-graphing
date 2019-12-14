@@ -8,5 +8,27 @@
     <h1> {{title}} </h1>
     <p>Welcome to  {{title}} </p>
   </body>
-  <script src="/javascripts/financial-data.js" charset="utf-8"></script>
+    <form action="/" method="POST">
+        <div>
+          <label for="from">From:</label>
+          <input type="date" id="startdate" name="startdate" value="2019-01-01" min="2015-01-01" max="2019-12-31">
+        </div>
+        
+        <div>
+          <label for="to">To:</label>
+          <input type="date" id="enddate" name="enddate" value="2019-12-14" min="2015-01-01" max="2019-12-31">
+        </div>
+
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+        </select>
+
+    </form>
+
+    <canvas id="myChart"></canvas>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="/javascripts/financial-data.js" charset="utf-8"></script>
 </html>
