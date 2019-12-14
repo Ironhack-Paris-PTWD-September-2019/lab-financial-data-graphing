@@ -5,9 +5,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1> {{title}} </h1>
-    <p>Welcome to  {{title}} </p>
-
+    <h1> Filters </h1>
+    
     <form>
       <label>From:
         <input id="from" type="date" name="from" value="2019-01-01">
@@ -15,7 +14,22 @@
       <label>To:
         <input id="to" type="date" name="to" value="2019-10-01">
       </label>
+
+      <br>
+      <br>
+
+      <label>Currency:
+        <select id="currency" name="currency">
+          <option value="usd">USD - $</option>
+          <option value="eur">EUR - €</option>
+          <option value="gbp">GBP - £</option>
+        </select>
+      </label>
     </form>
+
+    <h1>Values</h1>
+    <p>Min: <span id="min-value"></span></p>
+    <p>Max: <span id="max-value"></span></p>
 
     <canvas id="chart"></canvas>
 
