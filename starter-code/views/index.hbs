@@ -7,9 +7,16 @@
   <body>
     <h1> {{title}} </h1>
     <div id="graphDetails">
-      <div id="filters">
-        <input type="date" id="startDate" class="eventListener" value="">
+      <div id="filtersBlock">
+        From <input type="date" id="startDate" class="eventListener" value=""> to 
         <input type="date" id="endDate" class="eventListener" value="">
+      </div>
+      <div id="currencyBlock">
+        Currency: 
+        <select name="currency" id="currency" class="eventListener">
+          <option value="EUR">Euro (€)</option>
+          <option value="USD">US Dollar ($)</option>
+        </select>
       </div>
     </div>
     <canvas id="myChart"></canvas>
