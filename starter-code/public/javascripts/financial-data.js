@@ -2,18 +2,32 @@ const coindeskApi = axios.create({
     baseURL: `https://api.coindesk.com/v1/bpi/historical/`
 });
 
-function getCoinValue(startDate, endDate, currency) {
+let chart; // initialize chart outside getCoinValue function
+
+function getCoinValue(startDate, endDate, currency, init) {
     coindeskApi
         .get(`close.json?start=${startDate}&end=${endDate}&currency=${currency}`)
         .then(coinValue => {
+            if(!init) { // if chart already created, it needs to be destroyed to prevent previous graph hover events to be triggered
+                chart.destroy();
+            }
+
             const dailyData = coinValue.data.bpi;
             const coinDates = Object.keys(dailyData);
             const coinValues = Object.values(dailyData);
+            
+            // define min and max values
+            const coinValuesArray = [...coinValues];
+            const minValue = Math.min.apply(null, coinValuesArray).toFixed(2);
+            const maxValue = Math.max.apply(null, coinValuesArray).toFixed(2);
 
-            console.log(coinDates, coinValues)
+            // display results on html
+            document.getElementById(`minValue`).innerText = `${minValue} ${currency}`;
+            document.getElementById(`maxValue`).innerText = `${maxValue} ${currency}`;
 
             const $ctx = document.getElementById(`myChart`).getContext(`2d`);
-            const chart = new Chart($ctx, {
+            
+            chart = new Chart($ctx, {
                 type: `line`,
                 data: {
                     labels: coinDates,
@@ -22,8 +36,7 @@ function getCoinValue(startDate, endDate, currency) {
                         data: coinValues
                     }]   
                 }
-            })
-            console.log(dailyData)
+            });
         })
         .catch(err => console.error(err))
 }
@@ -53,7 +66,7 @@ const currencyList = [`EUR`, `USD`];
 document.getElementById(`startDate`).value = oneWeekAgo;
 document.getElementById(`endDate`).value = today;
 document.getElementById(`currency`).value = currencyList[0];
-getCoinValue(oneWeekAgo, today, currencyList[0]);
+getCoinValue(oneWeekAgo, today, currencyList[0], true);
 
 // add a listener on each input with .eventListener and update the graph in case of an event
 [...document.getElementsByClassName(`eventListener`)].forEach(input => 

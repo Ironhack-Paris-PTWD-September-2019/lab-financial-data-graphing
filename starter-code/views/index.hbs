@@ -6,17 +6,25 @@
   </head>
   <body>
     <h1> {{title}} </h1>
-    <div id="graphDetails">
+    <div id="topChart">
       <div id="filtersBlock">
-        From <input type="date" id="startDate" class="eventListener" value=""> to 
-        <input type="date" id="endDate" class="eventListener" value="">
+        <h2>Filters</h2>
+        <div id="datesBlock">
+          From <input type="date" id="startDate" class="eventListener" value=""> to 
+          <input type="date" id="endDate" class="eventListener" value="">
+        </div>
+        <div id="currencyBlock">
+          Currency: 
+          <select name="currency" id="currency" class="eventListener">
+            <option value="EUR">Euro (€)</option>
+            <option value="USD">US Dollar ($)</option>
+          </select>
+        </div>
       </div>
-      <div id="currencyBlock">
-        Currency: 
-        <select name="currency" id="currency" class="eventListener">
-          <option value="EUR">Euro (€)</option>
-          <option value="USD">US Dollar ($)</option>
-        </select>
+      <div id="valuesBlock">
+        <h2>Values</h2>
+        <p>Max: <span id="maxValue"></span></p>
+        <p>Min: <span id="minValue"></span></p>
       </div>
     </div>
     <canvas id="myChart"></canvas>
