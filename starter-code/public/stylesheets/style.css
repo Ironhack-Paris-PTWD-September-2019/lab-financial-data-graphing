@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+#topChart {
+  display: flex;
+  justify-content: space-between;
+}
+
+#currencyBlock {
+  margin-top:1em;
+}
+
+#valuesBlock {
+  text-align: right;
+}
